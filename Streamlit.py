@@ -83,6 +83,9 @@ records_summary = data_breaches['Records'].describe()
 st.markdown("<h2 style='text-align: center;'>Data Cleaning & Preperation</h2>",
             unsafe_allow_html=True)
 
+# I will check data types of the columns
+data_types = data_breaches.dtypes.apply(str)  # Convert data types to string before displaying
+
 # Data cleaning
 with st.expander("Data Cleaning"):
 
@@ -105,11 +108,10 @@ with st.expander("Data Cleaning"):
         records_summary = data_breaches['Records'].describe()
         st.write(records_summary)
 
-    # In the third column, I will display data types
+    # In the third column, display data types as strings
     with col3:
         st.write("Data Types")
-        data_types = data_breaches.dtypes
-        st.write(data_types)
+        st.write(data_types)  # This now contains strings, which should be displayable
 
     # Expain the key insights of data cleaninig step
     st.info("""

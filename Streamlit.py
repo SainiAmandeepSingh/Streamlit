@@ -128,13 +128,12 @@ records affected by violations, indicated by a large standard deviation.
 # =============================================================================
 
 # I will convert Year to integer rather than a float! (Just to ensure it is completed!)
-data_breaches['Year'] = pd.to_numeric(data_breaches['Year'],
-                                      errors='coerce')
+data_breaches['Year'] = pd.to_numeric(data_breaches['Year'], errors='coerce').dropna().astype(int)
 
 # I will also clean and standardize the 'Method' column in other words I will find out
 # all the variations that essentially mean the same thing. For example, I assume
 # 'hacked' and 'HACKED' are the same and should be standardized.
-data_breaches['Method'] = data_breaches['Method'].str.lower()
+data_breaches['Method'] = data_breaches['Method'].str.lower().str.capitalize()
 
 # I will remove any rows with NA values
 # This is quite important especially after type conversion if there were invalid years
@@ -147,11 +146,18 @@ data_breaches['Year'] = data_breaches['Year'].astype(int)
 def capitalize_each_word(s):
     return ' '.join(word.capitalize() for word in s.split())
 
+# Convert any unsupported dtypes to string
+for col in data_breaches.columns:
+    if data_breaches[col].dtype not in [int, float]:
+        data_breaches[col] = data_breaches[col].astype(str)
+
 # I will apply this function to the 'Organization type' and 'Method' columns
 data_breaches['Organization type'] = data_breaches['Organization type'].\
 apply(lambda x: capitalize_each_word(str(x)))
 data_breaches['Method'] = data_breaches['Method'].\
 apply(lambda x: capitalize_each_word(str(x)))
+
+
 
 # Further data cleaning
 with st.expander("Data Preparation"):
@@ -199,6 +205,14 @@ insightful data visualization for comprehensive analysis.
 # Data Visualization title with CSS for centering
 st.markdown("<h2 style='text-align: center;'>Data Visualization</h2>",
             unsafe_allow_html=True)
+
+# Attempt to convert 'Records' to numeric, forcing non-convertible values to NaN, then dropping these rows
+data_breaches['Records'] = pd.to_numeric(data_breaches['Records'], errors='coerce')
+data_breaches = data_breaches.dropna(subset=['Records'])
+
+# Now you can perform operations like division
+data_breaches['Records'] = data_breaches['Records'] / 1e6  # Assuming you want to convert to millions
+
 
 # I will prepare the data for filtering and plotting
 annual_data_breaches = data_breaches.groupby('Year')['Records'].sum().reset_index()
@@ -499,7 +513,6 @@ st.markdown("<h2 style='text-align: center;'>Data Perspectives</h2>",
 
 # Personal View
 st.markdown("""
-<<<<<<< HEAD
 I have thought a lot about data breaches at big companies like Yahoo, Facebook, and Microsoft.
 The things that really get into me are not just the great sum of leaked data,
 but how many has been lost in trust and the ethics that are linked to it.

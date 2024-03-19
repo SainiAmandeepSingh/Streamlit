@@ -291,7 +291,7 @@ col1, col2 = st.sidebar.columns([1.5, 2])
 
 # I will add my image to the left column
 with col1:
-    st.image("Me.jpg", width=120)
+    st.image("Me.jpg", width=125)
 
 # I will add the text to the right column
 with col2:

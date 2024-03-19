@@ -287,11 +287,11 @@ filtered_data = data_breaches[
 st.sidebar.header('About Me')
 
 # I will define a column layout
-col1, col2 = st.sidebar.columns([1.9, 2])
+col1, col2 = st.sidebar.columns([1.8, 2])
 
 # I will add my image to the left column
 with col1:
-    st.image("Me.jpg", width=130)
+    st.image("Me.jpg", width=120)
 
 # I will add the text to the right column
 with col2:

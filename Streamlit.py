@@ -337,22 +337,32 @@ fig.update_traces(
     marker=dict(color='white', size=5)  # Customizing marker color and size
 )
 
-# I will customize the layout for improved readability and aesthetics
+# Customizing the plot background to dark
 fig.update_layout(
-    xaxis_title="Year",
-    title_x=0.3,  # Centering the title
-    yaxis_title="Users Affected",
-    plot_bgcolor="rgba(0,0,0,0)",  # Transparent background
-    paper_bgcolor="rgba(0,0,0,0)",  # Transparent background
-    font=dict(color="white"),  # Text color
-    yaxis_type="log",  # Using a logarithmic scale for the y-axis
-    xaxis=dict(tickmode='linear'),  # Setting x-axis tick mode to linear
-    template="plotly_white",  # Using the white template for the plot
+    plot_bgcolor='rgba(0,0,0,0)',  # Set to transparent for a darker theme
+    paper_bgcolor='rgba(0,0,0,1)',  # Set to dark for a darker theme
+    font=dict(color='white'),  # Set font color to white for visibility
+    xaxis=dict(
+        title='Year',
+        showgrid=True,  # Show gridlines
+        gridcolor='grey',  # Set gridlines color to grey
+        tickmode='linear'  # Set x-axis tick mode to linear
+    ),
     yaxis=dict(
-        type='log',  # Using a logarithmic scale for the y-axis due to a large range of values
+        title='Users Affected',
+        showgrid=True,  # Show gridlines
+        gridcolor='grey',  # Set gridlines color to grey
+        type='log',  # Using a logarithmic scale for the y-axis
         tickvals=[0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000],  # Setting tick values
-        ticktext=['500K', '1M', '2M', '5M', '10M', '20M', '50M', '100M', '200M', '500M', '1B', '2B', '5B'],  # Setting tick labels
-    )
+        ticktext=['500K', '1M', '2M', '5M', '10M', '20M', '50M', '100M', '200M', '500M', '1B', '2B', '5B']  # Setting tick labels
+    ),
+    title_x=0.5,  # Center the title
+    legend_title_text='Method',  # Set legend title
+    legend=dict(
+        bgcolor='rgba(0,0,0,0.5)',  # Set legend background to semi-transparent black
+        bordercolor='rgba(255,255,255,0.5)',  # Set legend border to semi-transparent white
+    ),
+    template="plotly_dark",  # Use the dark theme template for the plot
 )
 
 # I will display the Plotly graph in the Streamlit app

@@ -161,8 +161,6 @@ apply(lambda x: capitalize_each_word(str(x)))
 data_breaches['Method'] = data_breaches['Method'].\
 apply(lambda x: capitalize_each_word(str(x)))
 
-
-
 # Further data cleaning
 with st.expander("Data Preparation"):
 
@@ -177,8 +175,10 @@ with st.expander("Data Preparation"):
     with col1:
         # I will write a title for the data types section
         st.write("Cleaned Data Types")
-        # I will display the data types of the dataframe
-        st.write(data_breaches.dtypes)
+        # Create a DataFrame from the dtypes and convert dtypes to strings
+        data_types_df = pd.DataFrame(data_breaches.dtypes.astype(str), columns=['Data Type'])
+        # Display the DataFrame with data types as strings
+        st.dataframe(data_types_df)
 
     # Second column
     with col2:

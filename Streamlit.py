@@ -108,10 +108,12 @@ with st.expander("Data Cleaning"):
         records_summary = data_breaches['Records'].describe()
         st.write(records_summary)
 
-    # In the third column, display data types as strings
+    # In the third column, display the data types as strings in a DataFrame
     with col3:
         st.write("Data Types")
-        st.write(data_types)  # This now contains strings, which should be displayable
+        # Convert dtypes to strings and make a DataFrame
+        data_types_df = pd.DataFrame(data_breaches.dtypes.astype(str), columns=['Type'])
+        st.dataframe(data_types_df)
 
     # Expain the key insights of data cleaninig step
     st.info("""

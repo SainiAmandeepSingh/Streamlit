@@ -564,14 +564,3 @@ daily occurrence that data breaches happen.***
 This is a very good reminder to these companies to be super cautious with our data.
 
 """)
-
-=======
-This data story is such a good example of how truly impactful data affects people's lives.
-This is pretty much saying that when companies like Yahoo grapple with security issues, it's not just numbers.
-In fact, it's people out there whose privacy is being put at stake.
-The reasons run from bad security to accidental leaks, showing in real numbers
-how even the largest of companies struggle with keeping our data safe.
-This story raise a very crucial issue regarding how personal information could be kept safe and,
-most specifically, how company are under the responsibility of safeguarding the trust placed on them by people.
-""")
->>>>>>> df806b27d1a3a0f640278b79cc33d2fcf84b408d

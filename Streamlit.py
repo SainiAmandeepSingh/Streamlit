@@ -344,19 +344,19 @@ fig.update_layout(
     font=dict(color='white'),  # Set font color to white for visibility
     xaxis=dict(
         title='Year',
-        showgrid=True,  # Show gridlines
+        showgrid=False,  # Hide gridlines
         gridcolor='grey',  # Set gridlines color to grey
         tickmode='linear'  # Set x-axis tick mode to linear
     ),
     yaxis=dict(
         title='Users Affected',
-        showgrid=True,  # Show gridlines
+        showgrid=False,  # Hide gridlines
         gridcolor='grey',  # Set gridlines color to grey
         type='log',  # Using a logarithmic scale for the y-axis
         tickvals=[0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000],  # Setting tick values
         ticktext=['500K', '1M', '2M', '5M', '10M', '20M', '50M', '100M', '200M', '500M', '1B', '2B', '5B']  # Setting tick labels
     ),
-    title_x=0.5,  # Center the title
+    title_x=0.3,  # Center the title
     legend_title_text='Method',  # Set legend title
     legend=dict(
         bgcolor='rgba(0,0,0,0.5)',  # Set legend background to semi-transparent black
@@ -432,17 +432,27 @@ fig2 = px.scatter(
 fig2.update_layout(
     xaxis_title="Year",
     yaxis_title="Users Affected",
-    title_x=0.1, # Center the title
-    plot_bgcolor="rgba(0,0,0,0)",  # Transparent background
-    paper_bgcolor="rgba(0,0,0,0)",  # Transparent background
+    title_x=0.5,  # Center the title
+    plot_bgcolor="rgba(0,0,0,1)",  # Dark background inside the plot area
+    paper_bgcolor="rgba(0,0,0,1)",  # Dark background for the whole figure
     font=dict(color="white"),  # Text color
     yaxis=dict(
         type='log',  # Use a logarithmic scale due to the large range of values
         tickvals=[0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000],
         ticktext=['500K', '1M', '2M', '5M', '10M', '20M', '50M', '100M', '200M', '500M', '1B', '2B', '5B'],
+        gridcolor='grey',  # Set gridlines color to grey
+        showgrid=True,  # Show gridlines
     ),
     legend_title="Entity",
-    showlegend=True  # In case I wanted to hide the legend
+    legend=dict(
+        bgcolor='rgba(0,0,0,0.5)',  # Semi-transparent background for the legend
+        bordercolor='rgba(255,255,255,0.5)',  # Semi-transparent border for the legend
+    ),
+    xaxis=dict(
+        showgrid=False,  # Hide gridlines
+        gridcolor='grey',  # Set gridlines color to grey
+    ),
+    template="plotly_dark",  # Use the dark theme template for the plot
 )
 
 # I will display the Plotly graph in the Streamlit app
@@ -500,18 +510,30 @@ fig3 = px.bar(
 # I will customize the layout for a logarithmic scale with custom tick values for readability and scalability reasons
 fig3.update_layout(
     xaxis_title="Entity",
-    title_x=0.2, # Center the title
+    title_x=0.2,  # Center the title
     yaxis_title="Users Affected",
-    plot_bgcolor="rgba(0,0,0,0)",  # Transparent background
-    paper_bgcolor="rgba(0,0,0,0)",  # Transparent background
+    plot_bgcolor="rgba(0,0,0,1)",  # Dark background inside the plot area
+    paper_bgcolor="rgba(0,0,0,1)",  # Dark background for the whole figure
     font=dict(color="white"),  # Text color
     yaxis=dict(
         type='log',  # Use a logarithmic scale due to the large range of values
         tickvals=[0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000],
-        ticktext=['500K', '1M', '2M', '5M', '10M', '20M', '50M', '100M', '200M', '500M', '1B', '2B', '5B']
+        ticktext=['500K', '1M', '2M', '5M', '10M', '20M', '50M', '100M', '200M', '500M', '1B', '2B', '5B'],
+        gridcolor='grey',  # Set gridlines color to grey
+        showgrid=True,  # Show gridlines
     ),
     legend_title="Data Breach Method",
-    xaxis={'categoryorder': 'array', 'categoryarray': sorted(graph3['Entity_short'].unique())}
+    legend=dict(
+        bgcolor='rgba(0,0,0,0.5)',  # Semi-transparent background for the legend
+        bordercolor='rgba(255,255,255,0.5)',  # Semi-transparent border for the legend
+    ),
+    xaxis=dict(
+        showgrid=False,  # Hide gridlines
+        gridcolor='grey',  # Set gridlines color to grey
+        categoryorder='array',  # Enforce the order of x-axis categories
+        categoryarray=sorted(graph3['Entity_short'].unique())  # The sorted order of entities
+    ),
+    template="plotly_dark",  # Use the dark theme template for the plot
 )
 
 # I will display the Plotly graph in the Streamlit app

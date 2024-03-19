@@ -423,6 +423,9 @@ fig2.update_layout(
     xaxis_title="Year",
     yaxis_title="Users Affected",
     title_x=0.1, # Center the title
+    plot_bgcolor="rgba(0,0,0,0)",  # Transparent background
+    paper_bgcolor="rgba(0,0,0,0)",  # Transparent background
+    font=dict(color="white"),  # Text color
     yaxis=dict(
         type='log',  # Use a logarithmic scale due to the large range of values
         tickvals=[0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000],
@@ -489,6 +492,9 @@ fig3.update_layout(
     xaxis_title="Entity",
     title_x=0.2, # Center the title
     yaxis_title="Users Affected",
+    plot_bgcolor="rgba(0,0,0,0)",  # Transparent background
+    paper_bgcolor="rgba(0,0,0,0)",  # Transparent background
+    font=dict(color="white"),  # Text color
     yaxis=dict(
         type='log',  # Use a logarithmic scale due to the large range of values
         tickvals=[0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000],

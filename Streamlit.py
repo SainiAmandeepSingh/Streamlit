@@ -206,13 +206,18 @@ insightful data visualization for comprehensive analysis.
 st.markdown("<h2 style='text-align: center;'>Data Visualization</h2>",
             unsafe_allow_html=True)
 
-# Attempt to convert 'Records' to numeric, forcing non-convertible values to NaN, then dropping these rows
-data_breaches['Records'] = pd.to_numeric(data_breaches['Records'], errors='coerce')
-data_breaches = data_breaches.dropna(subset=['Records'])
+# Convert 'Year' to integer
+data_breaches['Year'] = pd.to_numeric(data_breaches['Year'], errors='coerce').dropna().astype(int)
 
-# Now you can perform operations like division
-data_breaches['Records'] = data_breaches['Records'] / 1e6  # Assuming you want to convert to millions
+# Clean and standardize the 'Method' column
+data_breaches['Method'] = data_breaches['Method'].str.lower().str.capitalize()
 
+# Remove rows with NA values, which is important especially after type conversion if there were invalid years
+data_breaches = data_breaches.dropna(subset=['Year'])
+
+# Ensure 'Records' column is numeric and convert it to millions
+data_breaches['Records'] = pd.to_numeric(data_breaches['Records'], errors='coerce').dropna()
+data_breaches['Records'] = data_breaches['Records'] / 1e6
 
 # I will prepare the data for filtering and plotting
 annual_data_breaches = data_breaches.groupby('Year')['Records'].sum().reset_index()

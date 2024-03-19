@@ -342,6 +342,9 @@ fig.update_layout(
     xaxis_title="Year",
     title_x=0.3,  # Centering the title
     yaxis_title="Users Affected",
+    plot_bgcolor="rgba(0,0,0,0)",  # Transparent background
+    paper_bgcolor="rgba(0,0,0,0)",  # Transparent background
+    font=dict(color="white"),  # Text color
     yaxis_type="log",  # Using a logarithmic scale for the y-axis
     xaxis=dict(tickmode='linear'),  # Setting x-axis tick mode to linear
     template="plotly_white",  # Using the white template for the plot
